@@ -39,6 +39,9 @@ class DeliveryViewController: UIViewController,UITableViewDelegate,UITableViewDa
  deliveryTableView.rowHeight = 75
         deliveryTableView.reloadData()
         donePressed()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         // Do any additional setup after loading the view.
     }
     //IB Action methods
@@ -48,6 +51,16 @@ class DeliveryViewController: UIViewController,UITableViewDelegate,UITableViewDa
         let cell = deliveryTableView.cellForRow(at: IndexPath.init(row: rowIndexPath, section: 0)) as! DeliveryViewCell
         cellData.append(cell.cellTextField.text!)
         print(cellData[0])
+    }
+    @objc func keyBoardWillChange(notification : Notification)
+    {
+        print("Keyboard will show :\(notification.name.rawValue)")
+        view.frame.origin.y = -175
+    }
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     //private Functions
     //Objectice c functions

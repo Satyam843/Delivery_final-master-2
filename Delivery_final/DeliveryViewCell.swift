@@ -11,7 +11,7 @@ import UIKit
 protocol  Delivery {
     func OnClick(index : Int)
 }
-class DeliveryViewCell: UITableViewCell {
+class DeliveryViewCell: UITableViewCell,UITextFieldDelegate {
     //IB Outlets
     @IBOutlet weak var cellTextField: UITextField!
     @IBOutlet weak var button: UIButton!
@@ -26,6 +26,7 @@ class DeliveryViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         cellTextField.borderStyle = .none
+        cellTextField.delegate = self
         
         // Initialization code
     }
@@ -37,6 +38,12 @@ class DeliveryViewCell: UITableViewCell {
     func textFieldDidEndEditing(_ textField: UITextField) {
         //when editing is done.
         onTextFieldEndEditing?(textField.text)
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        cellTextField
+            .resignFirstResponder()
+        return true
+        
     }
     
 
