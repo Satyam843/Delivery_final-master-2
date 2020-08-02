@@ -46,11 +46,32 @@ class DeliveryViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     //IB Action methods
     @IBAction func saveCellData(_ sender: UIButton) {
-        let rowIndexPath = sender.tag
-        let indexPath = IndexPath(row: rowIndexPath, section: 0)
-        let cell = deliveryTableView.cellForRow(at: IndexPath.init(row: rowIndexPath, section: 0)) as! DeliveryViewCell
-        cellData.append(cell.cellTextField.text!)
-        print(cellData[0])
+       // let rowIndexPath = sender.tag
+       // let indexPath = IndexPath(row: rowIndexPath, section: 0)
+        var row = 0
+        while (row != deliveryData.count) {
+            let cell = deliveryTableView.cellForRow(at: IndexPath.init(row: row, section: 0)) as! DeliveryViewCell
+             row   += 1
+            print(cell.cellTextField.text!)
+           
+        }
+        
+       /* let cell = deliveryTableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) as! DeliveryViewCell
+        print(cell.cellTextField.text ?? nil!)
+        let cell1 = deliveryTableView.cellForRow(at: IndexPath.init(row: 1, section: 0)) as! DeliveryViewCell
+        print(cell1.cellTextField.text ?? nil!)
+        let cell2 = deliveryTableView.cellForRow(at: IndexPath.init(row: 2, section: 0)) as! DeliveryViewCell
+        print(cell2.cellTextField.text ?? nil!)
+        let cell3 = deliveryTableView.cellForRow(at: IndexPath.init(row: 3, section: 0)) as! DeliveryViewCell
+        print(cell3.cellTextField.text ?? nil!)
+        let cell4 = deliveryTableView.cellForRow(at: IndexPath.init(row: 4, section: 0)) as! DeliveryViewCell
+        print(cell4.cellTextField.text ?? nil!)
+        let cell5 = deliveryTableView.cellForRow(at: IndexPath.init(row: 5, section: 0)) as! DeliveryViewCell
+        print(cell5.cellTextField.text  ?? nil!)
+        let cell6 = deliveryTableView.cellForRow(at: IndexPath.init(row: 6, section: 0)) as! DeliveryViewCell
+        print(cell6.cellTextField.text ?? nil!)
+        let cell7 = deliveryTableView.cellForRow(at: IndexPath.init(row: 7, section: 0)) as! DeliveryViewCell
+        print(cell7.cellTextField.text ?? nil!)*/
     }
     @objc func keyBoardWillChange(notification : Notification)
     {
