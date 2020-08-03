@@ -5,13 +5,12 @@
     //  Created by soc-admin on 7/30/20.
     //  Copyright © 2020 soc-admin. All rights reserved.
     //
-
+    
     import UIKit
     class DeliveryViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate {
         //IB Outlets
         @IBOutlet weak var deliveryTableView: UITableView!
         @IBOutlet weak var saveData: UIButton!
-        @IBOutlet weak var button: UIButton!
         //Variables
         var deliveryName = ["Client Name","Phone","Email","order Id","Address","Deliver Before","Description","Barcode"]
         var imageName = [UIImage(named: "name"),
@@ -42,7 +41,10 @@
             while (row != deliveryName.count) {
                 let cell = deliveryTableView.cellForRow(at: IndexPath.init(row: row, section: 0)) as! DeliveryViewCell
                 row   += 1
-                print(cell.cellTextName.text!)
+                var textToPrint : String
+                textToPrint = cell.cellTextName.text ?? "value not entered"
+                print(textToPrint)
+                // print(cell.cellTextName.text as Any)
             }
         }
         //private Functions
@@ -140,6 +142,7 @@
         }
         
     }
+    
     extension  DeliveryViewController : Delivery
     {
         
