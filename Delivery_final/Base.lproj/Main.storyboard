@@ -45,7 +45,7 @@
                                                     <rect key="frame" x="349" y="21" width="35" height="18"/>
                                                     <state key="normal" title="Button" image="address_icon"/>
                                                     <connections>
-                                                        <action selector="pickLocation:" destination="WIv-Hm-fk0" eventType="touchUpInside" id="cH3-Ea-O9U"/>
+                                                        <action selector="tapPickLocation:" destination="WIv-Hm-fk0" eventType="touchUpInside" id="jBh-Pv-Hau"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -64,9 +64,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="button" destination="6dJ-v8-n4o" id="JPA-Kf-HWS"/>
-                                            <outlet property="cellImageView" destination="82e-ek-ZUa" id="pAC-hM-CRe"/>
-                                            <outlet property="cellTextField" destination="e18-Nb-euc" id="LtJ-qW-dDs"/>
+                                            <outlet property="cellImageName" destination="82e-ek-ZUa" id="IKv-pg-fDb"/>
+                                            <outlet property="cellTextName" destination="e18-Nb-euc" id="7vI-08-tXb"/>
+                                            <outlet property="tapButtonMap" destination="6dJ-v8-n4o" id="1B6-7m-Rgl"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -93,7 +93,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="saveCellData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oCJ-7k-9fo"/>
+                                    <action selector="tapPrintData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aaz-fH-YW6"/>
                                 </connections>
                             </button>
                         </subviews>

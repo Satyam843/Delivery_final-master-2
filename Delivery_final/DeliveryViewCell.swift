@@ -13,25 +13,25 @@ protocol  Delivery {
 }
 class DeliveryViewCell: UITableViewCell,UITextFieldDelegate {
     //IB Outlets
-    @IBOutlet weak var cellTextField: UITextField!
-    @IBOutlet weak var button: UIButton!
-    @IBOutlet weak var cellImageView: UIImageView!
+    @IBOutlet weak var tapButtonMap: UIButton!
+    @IBOutlet weak var cellTextName: UITextField!
+    @IBOutlet weak var cellImageName: UIImageView!
     //variables
+    
     var celldelegate : Delivery?
     var index : IndexPath?
     var onTextFieldEndEditing: ((String?) -> Void)?
-  
-   
+    
+    
     //View life cycle methods
     override func awakeFromNib() {
         super.awakeFromNib()
-        cellTextField.borderStyle = .none
-        cellTextField.delegate = self
+        cellTextName.borderStyle = .none
+        cellTextName.delegate = self
         
-        // Initialization code
     }
     //IB action methods
-    @IBAction func pickLocation(_ sender: Any) {
+    @IBAction func tapPickLocation(_ sender: Any) {
         celldelegate?.OnClick(index: index!.row)
     }
     //Private methods
@@ -40,12 +40,12 @@ class DeliveryViewCell: UITableViewCell,UITextFieldDelegate {
         onTextFieldEndEditing?(textField.text)
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        cellTextField
+        cellTextName
             .resignFirstResponder()
         return true
         
     }
     
-
-
+    
+    
 }
