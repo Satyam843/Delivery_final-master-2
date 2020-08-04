@@ -51,8 +51,10 @@
         //Objectice c functions
         @objc func donePressed() {
             let cell = deliveryTableView.cellForRow(at: IndexPath(row: 5, section: 0)) as! DeliveryViewCell
-            cell.cellTextName.text = "\(datePicker.date)"
-            print(cell.cellTextName.text!)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd MMM YYYY HH: MM a "
+            cell.cellTextName.text = dateFormatter.string(from: datePicker.date)
+           // print(cell.cellTextName.text!)
             self.view.endEditing(true)
         }
         @objc func action()
@@ -108,7 +110,7 @@
                 toolBar.sizeToFit()
                 let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
                 cell.cellTextName.inputAccessoryView = toolBar
-                cell.cellTextName.inputView = datePicker
+               // cell.cellTextName.inputView = datePicker
                 //cell.cellTextField.text = "\(datePicker.date)"
                 cell.cellTextName.placeholder = deliveryName[indexPath.row]
                 cell.cellImageName.image = imageName[indexPath.row]
