@@ -7,26 +7,6 @@
 //
 
 import UIKit
-class DeliveryData {
-    let placeholder: String
-    var value: String = ""
-    
-    init(_ placeholder: String) {
-        self.placeholder = placeholder
-    }
-}
-var deliveryData: [DeliveryData] = [
-    DeliveryData("Name"),
-    DeliveryData("Phone"),
-    DeliveryData("Email"),
-    DeliveryData("order"),
-    DeliveryData("Address"),
-    DeliveryData("Deliver before"),
-    DeliveryData("Description"),
-    DeliveryData("Barcode"),
-    DeliveryData("Image")
-]
-
 class DeliveryViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UIPickerViewDelegate,UITextFieldDelegate {
     //IB Outlets
     @IBOutlet weak var deliveryTableView: UITableView!
@@ -39,14 +19,13 @@ class DeliveryViewController: UIViewController,UITableViewDelegate,UITableViewDa
                      UIImage(named: "address"),
                      UIImage(named: "Date"),
                      UIImage(named: "Description"),
-                     UIImage(named: "BarCoad")
-        
+                     UIImage(named: "BarCoad"),
+                     UIImage(named: "plusicon")
     ]
     var selectedCode :  String?
-    var keyBoardType = [UIKeyboardType.default,UIKeyboardType.numberPad,UIKeyboardType.emailAddress,UIKeyboardType.default,UIKeyboardType.default,UIKeyboardType.default,UIKeyboardType.default,UIKeyboardType.default]
+    var keyBoardType = [UIKeyboardType.default,UIKeyboardType.numberPad,UIKeyboardType.emailAddress,UIKeyboardType.default,UIKeyboardType.default,UIKeyboardType.default,UIKeyboardType.default,UIKeyboardType.default,UIKeyboardType.default]
     //Constants
     let datePicker = UIDatePicker()
-    
     //View life cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,45 +59,19 @@ class DeliveryViewController: UIViewController,UITableViewDelegate,UITableViewDa
         //cell.data?.value = dateFormatter.string(from: datePicker.date)
         self.view.endEditing(true)
     }
-    
     @objc func viewTapped(gestureRecognizer : UITapGestureRecognizer)
     {
         view.endEditing(true)
     }
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let cell = deliveryTableView.cellForRow(at: IndexPath.init(row: 1, section: 0)) as! DeliveryViewCell
-        guard !string.isEmpty else {
-            return true
-        }
-        cell.cellTextName.keyboardType = .phonePad
-        if cell.cellTextName.keyboardType == .numberPad {
-            if CharacterSet(charactersIn: "0123456789").isSuperset(of: CharacterSet(charactersIn: string)) {
-                
-                return false
-            }
-        }
-        
-        
-        
-        return true
-    }
+    
+    
+    ////Tableview methods(stubs)
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // return deliveryName.count+1
         return deliveryData.count
     }
-    ////Tableview methods(stubs)
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = deliveryTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DeliveryViewCell
-        if(indexPath.row == 8)
-        {
-            // cell.cellTextName.placeholder = "Image"
-            cell.data = deliveryData[indexPath.row]
-            cell.tapButtonMap.isHidden = true
-            cell.cellImageName.image = UIImage(named: "plusicon")
-            return cell
-        }
-            
-        else if(indexPath.row == 4)
+        if(indexPath.row == 4)
         {
             let cell = deliveryTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DeliveryViewCell
             cell.celldelegate=self
@@ -144,21 +97,18 @@ class DeliveryViewController: UIViewController,UITableViewDelegate,UITableViewDa
             cell.cellTextName.keyboardType = keyBoardType[indexPath.row]
             return cell
         }
-    }
+                                                                                                  }
     //Pickerview methods(stubs)
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
 }
-
+//extension
 extension  DeliveryViewController : Delivery
 {
-    
     func OnClick(index: Int) {
         let alert = UIAlertController(title: "hello", message: "Click here to select address", preferredStyle:.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: .none))
         present(alert, animated: true, completion: .none)
-    }
-    
+                           }
 }
