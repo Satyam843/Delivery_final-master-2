@@ -27,7 +27,7 @@ var deliveryData: [DeliveryData] = [
     DeliveryData("Image")
 ]
 
-class DeliveryViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate {
+class DeliveryViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UIPickerViewDelegate,UITextFieldDelegate {
     //IB Outlets
     @IBOutlet weak var deliveryTableView: UITableView!
     @IBOutlet weak var saveData: UIButton!
@@ -148,18 +148,6 @@ class DeliveryViewController: UIViewController,UITableViewDelegate,UITableViewDa
     //Pickerview methods(stubs)
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return countryCode.count
-    }
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return countryCode[row]
-    }
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedCode = countryCode[row]
-        let cell = deliveryTableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! DeliveryViewCell
-        cell.cellTextName.text = selectedCode
     }
     
 }
