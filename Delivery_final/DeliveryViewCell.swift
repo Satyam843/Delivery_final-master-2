@@ -20,11 +20,26 @@
         var celldelegate : Delivery?
         var index : IndexPath?
         var onTextFieldEndEditing: ((String?) -> Void)?
+        var data : DeliveryData?
+        {
+            didSet
+            {
+              updateCell()
+            }
+        }
         //View life cycle methods
         override func awakeFromNib() {
             super.awakeFromNib()
             cellTextName.borderStyle = .none
             cellTextName.delegate = self
+        }
+        func updateCell()
+        {
+            if let data = data
+            {
+                cellTextName.text  = data.value
+                cellTextName.placeholder = data.placeholder
+            }
         }
         //IB action methods
         @IBAction func tapPickLocation(_ sender: Any) {
@@ -32,8 +47,7 @@
         }
         //Private methods
         func textFieldDidEndEditing(_ textField: UITextField) {
-            //when editing is done.
-            onTextFieldEndEditing?(textField.text)
+            data?.value = cellTextName.text ?? "no value"
         }
         func textFieldShouldReturn(_ textField: UITextField) -> Bool {
             cellTextName

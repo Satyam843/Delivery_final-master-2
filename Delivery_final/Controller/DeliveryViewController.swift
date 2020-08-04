@@ -7,6 +7,26 @@
     //
     
     import UIKit
+    class DeliveryData {
+        let placeholder: String
+        var value: String = ""
+        
+        init(_ placeholder: String) {
+            self.placeholder = placeholder
+        }
+    }
+    var deliveryData: [DeliveryData] = [
+        DeliveryData("Name"),
+        DeliveryData("Phone"),
+        DeliveryData("Email"),
+        DeliveryData("order"),
+        DeliveryData("Address"),
+        DeliveryData("Date"),
+        DeliveryData("Description"),
+        DeliveryData("Barcode"),
+        DeliveryData("Image")
+    ]
+
     class DeliveryViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate {
         //IB Outlets
         @IBOutlet weak var deliveryTableView: UITableView!
@@ -37,7 +57,7 @@
         }
         //IB Action methods
         @IBAction func tapPrintData(_ sender: Any) {
-            var row = 0
+            /*var row = 0
             while (row != deliveryName.count) {
                 let cell = deliveryTableView.cellForRow(at: IndexPath.init(row: row, section: 0)) as! DeliveryViewCell
                 row   += 1
@@ -45,6 +65,10 @@
                 textToPrint = cell.cellTextName.text ?? "value not entered"
                 print(textToPrint)
                 // print(cell.cellTextName.text as Any)
+            }*/
+            for data in deliveryData
+            {
+                print(data.value)
             }
         }
         //private Functions
@@ -62,14 +86,16 @@
             view.endEditing(true)
         }
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return deliveryName.count+1
+           // return deliveryName.count+1
+            return deliveryData.count
         }
         ////Tableview methods(stubs)
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = deliveryTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DeliveryViewCell
             if(indexPath.row == 8)
             {
-                cell.cellTextName.placeholder = "Image"
+               // cell.cellTextName.placeholder = "Image"
+                cell.data = deliveryData[indexPath.row]
                 cell.tapButtonMap.isHidden = true
                 cell.cellImageName.image = UIImage(named: "plusicon")
                 return cell
@@ -87,7 +113,8 @@
                 toolbar.setItems([button], animated: true)
                 toolbar.isUserInteractionEnabled = true
                 cell.cellTextName.inputAccessoryView = toolbar
-                cell.cellTextName.placeholder = deliveryName[indexPath.row]
+                //cell.cellTextName.placeholder = deliveryName[indexPath.row]
+                cell.data = deliveryData[indexPath.row]
                 cell.cellImageName.image = imageName[indexPath.row]
                 cell.tapButtonMap.isHidden = true
                 return cell
@@ -99,7 +126,8 @@
                 
                 cell.celldelegate=self
                 cell.index=indexPath
-                cell.cellTextName.placeholder = deliveryName[indexPath.row]
+              //  cell.cellTextName.placeholder = deliveryName[indexPath.row]
+                      cell.data = deliveryData[indexPath.row]
                 cell.cellImageName.image = imageName[indexPath.row]
                 return cell
             }
@@ -112,7 +140,8 @@
                 cell.cellTextName.inputAccessoryView = toolBar
                // cell.cellTextName.inputView = datePicker
                 //cell.cellTextField.text = "\(datePicker.date)"
-                cell.cellTextName.placeholder = deliveryName[indexPath.row]
+                //cell.cellTextName.placeholder = deliveryName[indexPath.row]
+                      cell.data = deliveryData[indexPath.row]
                 cell.cellImageName.image = imageName[indexPath.row]
                 cell.tapButtonMap.isHidden = true
                 toolBar.setItems([doneBtn], animated: true)
@@ -120,7 +149,8 @@
             }
             else
             {
-                cell.cellTextName.placeholder = deliveryName[indexPath.row]
+                //cell.cellTextName.placeholder = deliveryName[indexPath.row]
+                cell.data = deliveryData[indexPath.row]
                 cell.cellImageName.image = imageName[indexPath.row]
                 cell.tapButtonMap.isHidden = true
                 return cell
